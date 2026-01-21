@@ -1,13 +1,21 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { FiShoppingBag, FiSearch } from "react-icons/fi";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineClose } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { ADD } from "../../../controller/action";
+import { ADD } from "../../../redux/action";
 
 //from products in productItems filter during search
-export const SearchItems = ({ products, value, onSearch }) => {
+export const SearchItems = ({ products, value, onSearch }: any) => {
   const dispatch = useDispatch();
-  const addToCart = (e) => {
+  const [openImage, setOpenImage] = useState(false);
+  const [img, setImg] = useState("");
+  const onOpenImage = (src: any) => {
+    setImg(src);
+    setOpenImage(true);
+  };
+  const addToCart = (e: any) => {
     dispatch(ADD(e));
   };
 

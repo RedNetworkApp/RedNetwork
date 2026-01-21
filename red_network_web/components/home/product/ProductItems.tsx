@@ -1,19 +1,21 @@
+"use client";
+
 import React, { useState } from "react";
 import { FiShoppingBag, FiSearch } from "react-icons/fi";
 import { AiOutlineHeart, AiOutlineClose } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { useDispatch } from "react-redux";
-import { ADD } from "../../../controller/action";
+import { ADD } from "../../../redux/action";
 
-export const ProductItems = ({ cartItems }) => {
+export const ProductItems = ({ cartItems }: any) => {
   const dispatch = useDispatch();
-  const addToCart = (e) => {
+  const addToCart = (e: any) => {
     dispatch(ADD(e));
   };
 
   const [openImage, setOpenImage] = useState(false);
   const [img, setImg] = useState("");
-  const onOpenImage = (src) => {
+  const onOpenImage = (src: any) => {
     setImg(src);
     setOpenImage(true);
   };
@@ -41,7 +43,7 @@ export const ProductItems = ({ cartItems }) => {
               </div>
             </div>
             <div className="details">
-              <Link to="/details">
+              <Link href="/details">
                 <h3>{items.title}</h3>
                 <p>{items.desc}</p>
                 <h4>PKR {items.price}</h4>

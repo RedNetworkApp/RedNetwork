@@ -1,9 +1,11 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { MdStarRate } from "react-icons/md";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, useLocation } from "react-router-dom";
-import { ADD, DELETE, REMOVE_INT } from "../../../controller/action";
+import { useParams, useRouter } from "next/navigation";
+import { ADD, DELETE, REMOVE_INT } from "../../../redux/action";
 
 export const Details = () => {
   const [data, setData] = useState([]);
@@ -22,10 +24,10 @@ export const Details = () => {
   }, [_id]);
 
   // delete item
-  const history = useHistory();
-  const deletes = (id) => {
+  const router = useRouter();
+  const deletes = (id: any) => {
     dispatch(DELETE(id));
-    history.push("/");
+    router.push("/");
   };
 
   // increment item

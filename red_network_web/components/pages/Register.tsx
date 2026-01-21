@@ -1,28 +1,23 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "../../style/login.css";
+"use client";
 
-export default class Register extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      email: "",
-      mobile: "",
-      password: "",
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleSubmit(e) {
+import React, { useState } from "react";
+import Link from "next/link";
+import "../../styles/login.css";
+
+export default function Register() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    const { username, email, mobile, password } = this.state;
     fetch("https://fair-cyan-catfish-cape.cyclic.app/api/auth/register", {
       method: "POST",
-      crossDomain: true,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
+        // "Access-Control-Allow-Origin": "*", // Not needed in client fetch usually, handled by CORS on server
       },
       body: JSON.stringify({
         username,
@@ -32,47 +27,49 @@ export default class Register extends Component {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {});
-  }
-  render() {
-    return (
-      <div className="login-page">
-        <form onSubmit={this.handleSubmit}>
-          <h2>Register</h2>
-          <input
-            type="text"
-            required
-            placeholder="Name"
-            onChange={(e) => this.setState({ username: e.target.value })}
-          />
+      .then((data) => {
+        // Handle success/fail
+        console.log(data);
+      });
+  };
 
-          <input
-            type="email"
-            required
-            placeholder="Email"
-            onChange={(e) => this.setState({ email: e.target.value })}
-          />
+  return (
+    <div className="login-page">
+      <form onSubmit={handleSubmit}>
+        <h2>Register</h2>
+        <input
+          type="text"
+          required
+          placeholder="Name"
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-          <input
-            type="number"
-            required
-            placeholder="Phone Number"
-            onChange={(e) => this.setState({ mobile: e.target.value })}
-          />
+        <input
+          type="email"
+          required
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-          <input
-            type="password"
-            name="password"
-            required
-            placeholder="Enter Password"
-            onChange={(e) => this.setState({ password: e.target.value })}
-          />
-          <div className="row">
-            <button type="submit">Register</button>
-            <Link to="/login">Login</Link>
-          </div>
-        </form>
-      </div>
-    );
-  }
+        <input
+          type="number"
+          required
+          placeholder="Phone Number"
+          onChange={(e) => setMobile(e.target.value)}
+        />
+
+        <input
+          type="password"
+          name="password"
+          required
+          placeholder="Enter Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <div className="row">
+          <button type="submit">Register</button>
+          <Link href="/login">Login</Link>
+        </div>
+      </form>
+    </div>
+  );
 }
