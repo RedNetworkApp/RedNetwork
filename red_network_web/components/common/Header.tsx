@@ -200,12 +200,12 @@ export const Header = () => {
                     </div>
                     <StripeCheckout
                       name="Red Network"
-                      image={Clogo}
+                      image={Clogo.src}
                       billingAddress
                       shippingAddress
                       description={`Your total is $${price}`}
                       token={onToken}
-                      stripeKey={KEY}
+                      stripeKey={KEY || ""}
                     >
                       <button className="button">Checkout</button>
                     </StripeCheckout>
@@ -213,7 +213,7 @@ export const Header = () => {
                 ) : (
                   <div className="empty">
                     <p>Your cart is empty</p>
-                    <img src={cartimg} alt="" />
+                    <img src={cartimg.src} alt="" />
                   </div>
                 )}
               </div>
