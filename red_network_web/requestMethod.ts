@@ -2,13 +2,19 @@ import axios from "axios";
 
 const BASE_URL = "https://fair-cyan-catfish-cape.cyclic.app/api/";
 
-// const TOKEN =
-//   JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser
-//     .accessToken || "";
-
-const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
-const currentUser = user && JSON.parse(user).currentUser;
-const TOKEN = currentUser?.accessToken;
+let TOKEN = "";
+if (typeof window !== "undefined") {
+  try {
+    const persistRoot = localStorage.getItem("persist:root");
+    if (persistRoot) {
+      const user = JSON.parse(persistRoot)?.user;
+      const currentUser = user && JSON.parse(user).currentUser;
+      TOKEN = currentUser?.accessToken || "";
+    }
+  } catch (err) {
+    console.error("Error reading token from local storage", err);
+  }
+}
 
 export const publicRequest = axios.create({
   baseURL: BASE_URL,
@@ -16,5 +22,5 @@ export const publicRequest = axios.create({
 
 export const userRequest = axios.create({
   baseURL: BASE_URL,
-  header: { token: `Bearer ${TOKEN}` },
+  headers: { token: `Bearer ${TOKEN}` },
 });

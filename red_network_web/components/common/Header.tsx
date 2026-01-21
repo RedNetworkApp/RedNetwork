@@ -94,7 +94,7 @@ export const Header = () => {
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        const res = await userRequest("/checkout/payment", {
+        const res = await userRequest.post("/checkout/payment", {
           tokenId: stripeToken.id,
           amount: price,
         });
