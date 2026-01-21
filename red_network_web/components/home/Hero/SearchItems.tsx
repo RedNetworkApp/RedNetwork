@@ -24,16 +24,16 @@ export const SearchItems = ({ products, value, onSearch }: any) => {
       <section className="searchItems">
         <div className="product_items">
           {products
-            .filter((items) => {
-              const searchkey = value.toLowerCase();
-              const title = items.title.toLowerCase();
-
-              return (
-                searchkey && title.startsWith(searchkey) && title !== searchkey
-              );
+            .filter((items: any) => {
+              if (value === "") {
+                return items;
+              } else if (
+                items.title.toLowerCase().includes(value.toLowerCase())
+              ) {
+                return items;
+              }
             })
-            .slice(0, 10)
-            .map((items) => (
+            .map((items: any) => (
               <div
                 className="box"
                 onClick={() => onSearch(items.title)}

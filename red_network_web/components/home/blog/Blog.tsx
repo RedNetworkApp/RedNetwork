@@ -9,7 +9,7 @@ export const Blog = () => {
         <Heading title='LATEST BLOG POSTS' desc='Latest marketplace news, success stories and tutorials.' />
 
         <div className='posts'>
-          {blog.slice(0, 3).map((items) => (
+          {blog.slice(0, 3).map((items: any) => (
             <div className='post' key={items.id}>
               <div className='content'>
                 <div className='img'>

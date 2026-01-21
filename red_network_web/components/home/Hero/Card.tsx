@@ -5,7 +5,7 @@ export const Card = () => {
   return (
     <>
       <section className='cards'>
-        {hero.map((item) => (
+        {hero.map((item: any) => (
           <div className='card' key={item.id}>
             <div className='left'>
               <img src={item.cover} alt='' />

@@ -15,7 +15,7 @@ export const Details = () => {
 
   useEffect(() => {
     const compare = () => {
-      let compareData = getdata.filter((e) => {
+      let compareData = getdata.filter((e: any) => {
         return e.id === _id;
       });
       setData(compareData);

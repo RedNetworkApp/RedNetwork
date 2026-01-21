@@ -10,7 +10,7 @@ export const Testimonial = () => {
         <Heading title="Quotes" desc="Quotes from our team members" />
 
         <div className="content">
-          {customer.map((items) => (
+          {customer.map((items: any) => (
             <div className="card" key={items.id}>
               <button>
                 <ImQuotesRight />
