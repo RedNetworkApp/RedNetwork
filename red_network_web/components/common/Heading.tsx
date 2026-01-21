@@ -1,6 +1,6 @@
 import React from "react"
 
-export const Heading = ({ title, desc }) => {
+export const Heading = ({ title, desc }: any) => {
   return (
     <>
       <div className='heading'>

@@ -11,7 +11,7 @@ export const Details = () => {
   const [data, setData] = useState([]);
   const { _id } = useParams();
 
-  const getdata = useSelector((state) => state.cartReducer.carts);
+  const getdata = useSelector((state: any) => state.cartReducer.carts);
 
   useEffect(() => {
     const compare = () => {
@@ -46,7 +46,7 @@ export const Details = () => {
       <article>
         <section className="details">
           <h2 className="details_title">Product Details Pages</h2>
-          {data.map((item) => (
+          {data.map((item: any) => (
             <div className="details_content">
               <div className="details_content_img">
                 <img src={item.img} alt="" />
