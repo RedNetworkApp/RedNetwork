@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import { Heading } from "../../common/Heading";
 import { ProductItems } from "./ProductItems";
@@ -13,7 +14,7 @@ export const Product = () => {
       try {
         const res = await publicRequest.get("/products/");
         setCartItems(res.data);
-      } catch (error) {}
+      } catch (error) { }
     };
     getProducts();
   });

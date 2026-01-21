@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { FiShoppingBag, FiSearch } from "react-icons/fi";
 import { AiOutlineHeart, AiOutlineClose } from "react-icons/ai";
