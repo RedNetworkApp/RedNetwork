@@ -32,12 +32,12 @@ export const Details = () => {
 
   // increment item
   const dispatch = useDispatch();
-  const increment = (e) => {
+  const increment = (e: any) => {
     dispatch(ADD(e));
   };
 
   // descriment item
-  const decrement = (item) => {
+  const decrement = (item: any) => {
     dispatch(REMOVE_INT(item));
   };
 

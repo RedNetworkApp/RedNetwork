@@ -13,16 +13,16 @@ export const Hero = () => {
       try {
         const res = await publicRequest.get("/products/");
         setProduct(res.data);
-      } catch (error) {}
+      } catch (error) { }
     };
     getProducts();
   });
 
-  const onChanage = (e) => {
+  const onChanage = (e: any) => {
     setValue(e.target.value);
   };
 
-  const onSearch = (key) => {
+  const onSearch = (key: any) => {
     setValue(key);
   };
   return (

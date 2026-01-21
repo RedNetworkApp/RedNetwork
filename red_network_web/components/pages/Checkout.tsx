@@ -17,7 +17,7 @@ function Checkout() {
         />
         <input type="address" name="address" required placeholder="Address" />
         <div className="row">
-          <button className="button" type="submit" onClick="">
+          <button className="button" type="submit">
             Pay Now
           </button>
         </div>

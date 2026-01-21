@@ -23,7 +23,7 @@ export const ProductItems = ({ cartItems }: any) => {
   return (
     <>
       <div className="product_items">
-        {cartItems.map((items) => (
+        {cartItems.map((items: any) => (
           <div className="box" key={items.id}>
             <div className="img">
               <img src={items.img} alt="" />

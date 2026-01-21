@@ -81,3 +81,30 @@ export const blog = [
     cover: "../images/blog/b6.jpg",
   },
 ];
+
+export const hero = [
+  {
+    id: 1,
+    cover: "https://via.placeholder.com/150",
+    name: "Web Themes",
+    items: "5",
+  },
+  {
+    id: 2,
+    cover: "https://via.placeholder.com/150",
+    name: "UI/UX Design",
+    items: "12",
+  },
+  {
+    id: 3,
+    cover: "https://via.placeholder.com/150",
+    name: "SEO",
+    items: "12",
+  },
+  {
+    id: 4,
+    cover: "https://via.placeholder.com/150",
+    name: "Software",
+    items: "15",
+  },
+];
