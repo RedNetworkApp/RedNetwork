@@ -1,14 +1,16 @@
+"use client";
+
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { login } from "../../controller/apiCalls";
+import Link from "next/link";
+import { login } from "../../redux/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
-import "../../style/login.css";
+import "../../styles/login.css";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { isFetching, error } = useSelector((state) => state.user);
+  const { isFetching, error } = useSelector((state: any) => state.user);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -42,7 +44,7 @@ function Login() {
               Please check the details you entered...
             </span>
           )}
-          <Link to="/register">Register</Link>
+          <Link href="/register">Register</Link>
         </div>
       </form>
     </div>
