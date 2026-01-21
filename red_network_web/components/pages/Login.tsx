@@ -12,7 +12,7 @@ function Login() {
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state: any) => state.user);
 
-  const handleClick = (e) => {
+  const handleClick = (e: any) => {
     e.preventDefault();
     login(dispatch, { username, password });
   };
