@@ -174,7 +174,7 @@ export const Header = () => {
                       <h3>Photo</h3>
                       <p>Product Name</p>
                     </div>
-                    {getdata.map((e) => (
+                    {getdata.map((e: any) => (
                       <div className="details_content">
                         <div className="details_content_img">
                           <Link href={`/cart/${e._id}`} onClick={handleClose}>
@@ -224,7 +224,7 @@ export const Header = () => {
     </>
   );
 };
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
   return {
     amount: state.amount,
   };
