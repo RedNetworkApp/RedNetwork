@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import { Heading } from "../../common/Heading";
 import { ProductItems } from "../product/ProductItems";
