@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import logo from "../assets/images/logo.png";
 import cartimg from "../assets/images/cart.png";
@@ -13,8 +15,9 @@ import {
 } from "react-icons/ai";
 import { navlist } from "../assets/data/data";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import { DELETE } from "../../controller/action";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { DELETE } from "../../redux/action";
 import { useEffect } from "react";
 import { userRequest } from "../../requestMethod";
 //import getStripe from "../../getStripe"
@@ -23,10 +26,10 @@ import StripeCheckout from "react-stripe-checkout";
 export const Header = () => {
   // navbar
   const [mobile, setMobile] = useState(false);
-  const [cartList, setCartList] = useState(false);
+  const [cartList, setCartList] = useState<any>(false);
   const [price, setPrice] = useState(0);
-  const [stripeToken, setStripeToken] = useState(null);
-  const history = useHistory();
+  const [stripeToken, setStripeToken] = useState<any>(null);
+  const router = useRouter();
   const KEY = process.env.REACT_STRIPE_CHECKOUT_KEY;
 
   // cart open and close
@@ -34,18 +37,18 @@ export const Header = () => {
     setCartList(null);
   };
   // scroll navbar
-  window.addEventListener("scroll", function () {
+  /*window.addEventListener("scroll", function () {
     const header = this.document.querySelector(".header");
     header.classList.toggle("active", this.window.scrollY > 100);
-  });
+  });*/
 
   // cart add in shop
-  const getdata = useSelector((state) => state.cartReducer.carts);
+  const getdata = useSelector((state: any) => state.cartReducer.carts);
   //console.log(getdata)
 
   // delete cart
   const dispatch = useDispatch();
-  const delet = (_id) => {
+  const delet = (_id: any) => {
     dispatch(DELETE(_id));
   };
 
@@ -54,7 +57,7 @@ export const Header = () => {
   useEffect(() => {
     const totals = () => {
       let price = 0;
-      getdata.map((e, i) => {
+      getdata.map((e: any, i: any) => {
         price = parseFloat(e.price) * e.qty + price;
       });
       setPrice(price);
@@ -84,7 +87,7 @@ export const Header = () => {
   };*/
   }
 
-  const onToken = (token) => {
+  const onToken = (token: any) => {
     setStripeToken(token);
   };
 
@@ -95,11 +98,11 @@ export const Header = () => {
           tokenId: stripeToken.id,
           amount: price,
         });
-        history.push("/success", { data: res.data });
-      } catch (error) {}
+        router.push("/success" /*, { data: res.data } */); // Next.js push doesn't support state like history
+      } catch (error) { }
     };
     stripeToken && price >= 1 && makeRequest();
-  }, [stripeToken, price, history]);
+  }, [stripeToken, price, router]);
 
   //stripe checkout
   {
@@ -136,15 +139,15 @@ export const Header = () => {
               </button>
             </div>
             <div className="left">
-              <Link to="/">
-                <img src={logo} alt="logo" />
+              <Link href="/">
+                <img src={logo.src} alt="logo" />
               </Link>
             </div>
             <div className="center">
               <ul className={mobile ? "mobile-nav" : "menu"}>
-                {navlist.map((nav, i) => (
+                {navlist.map((nav: any, i: any) => (
                   <li key={i}>
-                    <Link to={nav.path}>{nav.text}</Link>
+                    <Link href={nav.path}>{nav.text}</Link>
                   </li>
                 ))}
               </ul>
@@ -174,7 +177,7 @@ export const Header = () => {
                     {getdata.map((e) => (
                       <div className="details_content">
                         <div className="details_content_img">
-                          <Link to={`/cart/${e._id}`} onClick={handleClose}>
+                          <Link href={`/cart/${e._id}`} onClick={handleClose}>
                             <img src={e.img} alt="" />
                           </Link>
                         </div>
