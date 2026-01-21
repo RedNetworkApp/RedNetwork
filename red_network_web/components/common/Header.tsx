@@ -198,6 +198,7 @@ export const Header = () => {
                     <div className="details_total">
                       <h4>Total : PKR {price}</h4>
                     </div>
+                    {/* @ts-ignore */}
                     <StripeCheckout
                       name="Red Network"
                       image={Clogo.src}
